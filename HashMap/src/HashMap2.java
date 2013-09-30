@@ -6,6 +6,7 @@ public class HashMap2 {
 	private List<String>[] map;
 	private int size;
 	
+	@SuppressWarnings("unchecked")
 	public HashMap2(int size) {
 		this.size = size;
 		this.map = (ArrayList<String>[]) new ArrayList[size];
