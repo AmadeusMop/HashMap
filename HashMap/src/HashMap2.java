@@ -21,26 +21,28 @@ public class HashMap2 {
 		return output;
 	}
 	
-	public boolean add(String input) {
-		//boolean because that's what List.add() returns.
-		//It seems bad to throw away data like that.
-		int hashedValue = hash(input);
-		return map[hashedValue].add(input);
+	public boolean add(String key, String value) {
+		int hashedValue = hash(key);
+		return map[hashedValue].add(key, value);
 	}
 	
-	public boolean remove(String input) { 
-		//boolean because that's what List.remove() returns.
-		//It seems bad to throw away data like that.
-		int hashedValue = hash(input);
-		return map[hashedValue].remove(input);
+	public boolean set(String key, String value) {
+		int hashedValue = hash(key);
+		return map[hashedValue].set(key, value);
 	}
+	
+	public String getValue(String key) {
+		int hashedValue = hash(key);
+		return map[hashedValue].getValue(key);
+	}
+	
 	
 	public HashBucket getBucket(int index) {
 		return map[index];
 	}
 	
-	public boolean exists(String input) {
-		int hashedValue = hash(input);
-		return map[hashedValue].contains(input);
+	public boolean contains(String key) {
+		int hashedValue = hash(key);
+		return map[hashedValue].contains(key);
 	}
 }
