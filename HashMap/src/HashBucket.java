@@ -15,8 +15,8 @@ public class HashBucket {
 		return add(new KeyValuePair(key, value));
 	}
 	
-	public boolean add(KeyValuePair input) {
-		if(contains(input)) {
+	private boolean add(KeyValuePair input) {
+		if(containsKey(input.getKey())) {
 			return false;
 		} else {
 			bucket.add(input);
@@ -28,7 +28,7 @@ public class HashBucket {
 		return set(new KeyValuePair(key, value));
 	}
 	
-	public boolean set(KeyValuePair input) {
+	private boolean set(KeyValuePair input) {
 		KeyValuePair kvp = getKeyValuePair(input.getKey());
 		if(kvp != null) {
 			kvp.setValue(input.getValue());
@@ -40,7 +40,7 @@ public class HashBucket {
 	}
 	
 	public String getValue(String key) {
-		if(contains(key)) {
+		if(containsKey(key)) {
 			return getKeyValuePair(key).getValue();
 		} else {
 			return null;
@@ -59,15 +59,20 @@ public class HashBucket {
 		return null;
 	}
 	
-	public boolean remove(KeyValuePair input) {
-		return bucket.remove(input);
-	}
-	
-	public boolean contains(String key) {
+	public boolean containsKey(String key) {
 		return getKeyValuePair(key) != null;
 	}
 	
-	public boolean contains(KeyValuePair input) {
-		return getKeyValuePair(input.getKey()) != null;
+	public boolean containsKeyValuePair(String key, String value) {
+		return containsKeyValuePair(new KeyValuePair(key, value));
+	}
+	
+	private boolean containsKeyValuePair(KeyValuePair input) {
+		KeyValuePair kvp = getKeyValuePair(input.getKey());
+		if(kvp != null) {
+			return input.getValue().equals(kvp.getValue());
+		} else {
+			return false;
+		}
 	}
 }

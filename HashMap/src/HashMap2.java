@@ -6,6 +6,9 @@ public class HashMap2 {
 	public HashMap2(int size) {
 		this.size = size;
 		this.map = new HashBucket[size];
+		for(int i = 0; i < size; i++) {
+			map[i] = new HashBucket();
+		}
 	}
 	
 	public HashMap2() {
@@ -43,6 +46,11 @@ public class HashMap2 {
 	
 	public boolean contains(String key) {
 		int hashedValue = hash(key);
-		return map[hashedValue].contains(key);
+		return map[hashedValue].containsKey(key);
+	}
+	
+	public boolean contains(String key, String value) {
+		int hashedValue = hash(key);
+		return map[hashedValue].containsKeyValuePair(key, value);
 	}
 }
