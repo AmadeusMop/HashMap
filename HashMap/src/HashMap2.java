@@ -1,15 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class HashMap2 {
-	private List<String>[] map;
+	private HashBucket[] map;
 	private int size;
 	
-	@SuppressWarnings("unchecked")
 	public HashMap2(int size) {
 		this.size = size;
-		this.map = (ArrayList<String>[]) new ArrayList[size];
+		this.map = new HashBucket[size];
 	}
 	
 	public HashMap2() {
@@ -39,7 +35,11 @@ public class HashMap2 {
 		return map[hashedValue].remove(input);
 	}
 	
-	public boolean contains(String input) {
+	public HashBucket getBucket(int index) {
+		return map[index];
+	}
+	
+	public boolean exists(String input) {
 		int hashedValue = hash(input);
 		return map[hashedValue].contains(input);
 	}
