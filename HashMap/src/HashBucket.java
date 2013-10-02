@@ -24,18 +24,34 @@ public class HashBucket {
 		}
 	}
 	
-	public boolean set(String key, String value) {
-		return set(new KeyValuePair(key, value));
+	public List<String> getKeys() {
+		List<String> keysList = new ArrayList<String>();
+		iter = bucket.iterator();
+		while(iter.hasNext()) {
+			keysList.add(iter.next().getKey());
+		}
+		return keysList;
 	}
 	
-	private boolean set(KeyValuePair input) {
+	public List<String> getValues() {
+		List<String> valuesArray = new ArrayList<String>();
+		iter = bucket.iterator();
+		while(iter.hasNext()) {
+			valuesArray.add(iter.next().getValue());
+		}
+		return valuesArray;
+	}
+	
+	public void set(String key, String value) {
+		set(new KeyValuePair(key, value));
+	}
+	
+	private void set(KeyValuePair input) {
 		KeyValuePair kvp = getKeyValuePair(input.getKey());
 		if(kvp != null) {
 			kvp.setValue(input.getValue());
-			return false;
 		} else {
 			bucket.add(input);
-			return true;
 		}
 	}
 	
