@@ -1,3 +1,4 @@
+package hashMap;
 
 public class KeyValuePair {
 	private String key, value;
