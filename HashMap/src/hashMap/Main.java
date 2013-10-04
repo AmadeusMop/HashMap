@@ -9,36 +9,37 @@ public class Main {
 	public static void main(String[] args) {
 		HashMap2 hashMap = new HashMap2(SIZE);
 		JFrame frame = new JFrame("Hash Map");
-		JPanel grid = new JPanel(new GridLayout(1, SIZE));
-		addEmptyLabelsToPanel(grid);
-		JLabel label = new JLabel();
-		JLabel label2 = new JLabel();
-		
-		grid.add(label);
-		grid.add(label2);
+		JPanel grid = new JPanel(new GridLayout(2, 0)), p;
+		for(int i = 0; i < SIZE; i++) {
+			grid.add(new JLabel(Integer.toString(i)));
+		}
+		JPanel[] buckets = addBucketsToPanel(grid);
 		grid.validate();
-		System.out.println(grid);
 		
+		String str1 = "hello";
+		hashMap.add(str1, "goodbye");
+		p = buckets[hashMap.getBucket(str1)];
+		p.add(new JLabel("<html>" + str1 + "<br>" + hashMap.get(str1)));
+		
+		frame.setPreferredSize(new Dimension(640, 480));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add(grid, BorderLayout.CENTER);
+		frame.setContentPane(grid);
 		frame.pack();
-		label.setText("blueberry");
-		label2.setText("raspberry");
 		frame.setVisible(true);
 	}
 	
-	public static void addEmptyLabelsToPanel(JPanel panel) {
-		JLabel[] labels = createEmptyLabels();
+	public static JPanel[] addBucketsToPanel(JPanel panel) {
+		JPanel[] panels = createEmptyBuckets();
 		for(int i = 0; i < SIZE; i++) {
-			labels[i].setText(Integer.toString(i));
-			panel.add(labels[i]);
+			panel.add(panels[i]);
 		}
+		return panels;
 	}
 	
-	public static JLabel[] createEmptyLabels() {
-		JLabel[] output = new JLabel[SIZE];
+	private static JPanel[] createEmptyBuckets() {
+		JPanel[] output = new JPanel[SIZE];
 		for(int i = 0; i < SIZE; i++) {
-			output[i] = new JLabel();
+			output[i] = new JPanel(new GridLayout(0, 1));
 		}
 		return output;
 	}
