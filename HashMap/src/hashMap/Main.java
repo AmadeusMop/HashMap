@@ -2,6 +2,8 @@ package hashMap;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -11,8 +13,9 @@ import javax.swing.JPanel;
 public class Main {
 	private static final int SIZE = 10;
 	
-	public static void main(String[] args) {
-		Scanner inputFile = new Scanner("inputFile.txt");
+	public static void main(String[] args) throws FileNotFoundException {
+		System.out.println(new File(".").getAbsolutePath());
+		Scanner inputFile = new Scanner(new File("src\\hashMap\\inputFile.txt"));
 		HashMap2 hashMap = new HashMap2(SIZE);
 		JFrame frame = new JFrame("Hash Map");
 		JPanel grid = new JPanel(new GridLayout(2, 0));
@@ -25,6 +28,10 @@ public class Main {
 		
 		while(inputFile.hasNextLine()) {
 			inputLines = inputFile.nextLine().split(" ");
+			if(inputLines.length < 2) {
+				continue;
+			}
+			System.out.println(inputLines[0]);
 			addToBucketsAndHashMap(inputLines[0], inputLines[1], hashMap, buckets);
 		}
 		inputFile.close();
