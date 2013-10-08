@@ -15,7 +15,7 @@ public class Main {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println(new File(".").getAbsolutePath());
-		Scanner inputFile = new Scanner(new File("src\\hashMap\\inputFile.txt"));
+		Scanner inputFile = new Scanner(new File(".\\src\\hashMap\\inputFile.txt"));
 		HashMap2 hashMap = new HashMap2(SIZE);
 		JFrame frame = new JFrame("Hash Map");
 		JPanel grid = new JPanel(new GridLayout(2, 0));
