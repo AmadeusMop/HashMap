@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Main {
 	public static void main(String[] args) {
-		HashMap2 hashMap = new HashMap2();
+		//HashMap2 hashMap = new HashMap2();
 		int[] l = {1, 5, 3, 4, 2, 6, 9, 8, 6, 6, 3, 5, 9, 7};
 		Entry[] elist = mergeSort(l);
 		for(Entry e : elist) {
@@ -14,7 +14,7 @@ public class Main {
 		}
 	}
 	
-	private static Entry[] mergeSort(int[] list) { //For testing only
+	public static Entry[] mergeSort(int[] list) { //For testing only
 		Entry[] input = new Entry[list.length];
 		for(int i = 0; i < list.length; i++) {
 			input[i] = new Entry(list[i], "Hello" + i%10);
@@ -22,7 +22,7 @@ public class Main {
 		return mergeSort(input);
 	}
 	
-	private static Entry[] mergeSort(Entry[] list) {
+	public static Entry[] mergeSort(Entry[] list) {
 		// Uses merge sort, and does not change the original array.
 		if(list.length == 1) {
 			return Arrays.copyOf(list, 1);
@@ -59,6 +59,23 @@ public class Main {
 			}
 		}
 		return output;
+	}
+	
+	public static String[] bubbleSort(String[] names) { //For testing only
+		String temp;
+		boolean isSorted;
+		do {
+			isSorted = true;
+			for(int i = 1; i < names.length; i++) {
+				if(names[i-1].compareTo(names[i]) > 0) {
+					temp = names[i-1];
+					names[i-1] = names[i];
+					names[i] = temp;
+					isSorted = false;
+				}
+			}
+		} while(!isSorted);
+		return names;
 	}
 	
 	private static Entry[] bubbleSort(Entry[] names) {
