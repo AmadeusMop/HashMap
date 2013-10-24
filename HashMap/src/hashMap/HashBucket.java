@@ -92,4 +92,13 @@ public class HashBucket {
 			return false;
 		}
 	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		iter = bucket.iterator();
+		while(iter.hasNext()) {
+			sb.append(iter.next().toString());
+		}
+		return sb.toString();
+	}
 }

@@ -91,4 +91,14 @@ public class HashMap2 {
 		int hashedValue = hash(key);
 		return map[hashedValue].containsKeyValuePair(key, value);
 	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for(HashBucket bucket : map) {
+			sb.append(bucket.toString());
+		}
+		sb.append("]");
+		return sb.toString();
+	}
 }
