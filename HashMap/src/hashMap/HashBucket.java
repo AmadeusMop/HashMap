@@ -95,10 +95,15 @@ public class HashBucket {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("[");
 		iter = bucket.iterator();
 		while(iter.hasNext()) {
+			sb.append("(");
 			sb.append(iter.next().toString());
+			sb.append(")");
+			if(iter.hasNext()) sb.append(", ");
 		}
+		sb.append("]");
 		return sb.toString();
 	}
 }

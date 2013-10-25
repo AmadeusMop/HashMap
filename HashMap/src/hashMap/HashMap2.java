@@ -92,6 +92,50 @@ public class HashMap2 {
 		return map[hashedValue].containsKeyValuePair(key, value);
 	}
 	
+	public List<String> sortedKeys() { //Returns a List of type String, sorted based on their corresponding values. Uses insertion sort.
+		List<String> keysList = getKeys();
+		int index;
+		int v;
+		String s;
+		for(int i = 0; i < keysList.size(); i++) {
+			index = i;
+			s = keysList.remove(i);
+			v = getInt(s);
+			for(int j = 0; j < i; j++) {
+				if(v < getInt(keysList.get(j))) {
+					index = j;
+					break;
+				}
+			}
+			keysList.add(index, s);
+		}
+		return keysList;
+	}
+	
+	public List<String> reverseSortedKeys() { //Returns a List of type String, sorted based on their corresponding values. Uses insertion sort.
+		List<String> keysList = getKeys();
+		int index;
+		int v;
+		String s;
+		for(int i = 0; i < keysList.size(); i++) {
+			index = i;
+			s = keysList.remove(i);
+			v = getInt(s);
+			for(int j = 0; j < i; j++) {
+				if(v > getInt(keysList.get(j))) {
+					index = j;
+					break;
+				}
+			}
+			keysList.add(index, s);
+		}
+		return keysList;
+	}
+	
+	private int getInt(String s) {
+		return Integer.parseInt(get(s));
+	}
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
