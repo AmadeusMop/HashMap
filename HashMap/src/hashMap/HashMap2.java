@@ -1,6 +1,7 @@
 package hashMap;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -72,6 +73,21 @@ public class HashMap2 {
 	
 	public HashMap2() {
 		this(10);
+	}
+	
+	public void addHashMap(HashMap2 other) {
+		List<String> otherKeys = other.getKeys();
+		Iterator<String> iter = otherKeys.iterator();
+		String s;
+		
+		while(iter.hasNext()) {
+			s = iter.next();
+			if(exists(s)) {
+				set(s, Integer.toString(Integer.parseInt(get(s)) + Integer.parseInt(other.get(s))));
+			} else {
+				set(s, other.get(s));
+			}
+		}
 	}
 	
 	public boolean add(String key, String value) {
