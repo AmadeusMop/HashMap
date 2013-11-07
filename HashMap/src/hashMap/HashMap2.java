@@ -75,7 +75,7 @@ public class HashMap2 {
 		this(10);
 	}
 	
-	public void addHashMap(HashMap2 other) {
+	public void add(HashMap2 other) {
 		List<String> otherKeys = other.getKeys();
 		Iterator<String> iter = otherKeys.iterator();
 		String s;
