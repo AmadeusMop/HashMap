@@ -25,6 +25,15 @@ public class IntegerHashBucket {
 		}
 	}
 	
+	List<IntKeyValuePair> getKeyValuePairs() {
+		List<IntKeyValuePair> kvpList = new ArrayList<IntKeyValuePair>();
+		iter = bucket.iterator();
+		while(iter.hasNext()) {
+			kvpList.add(iter.next());
+		}
+		return kvpList;
+	}
+	
 	public List<String> getKeys() {
 		List<String> keysList = new ArrayList<String>();
 		iter = bucket.iterator();

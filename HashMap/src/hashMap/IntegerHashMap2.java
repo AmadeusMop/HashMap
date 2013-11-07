@@ -108,48 +108,31 @@ public class IntegerHashMap2 {
 		return map[hashedValue].containsKeyValuePair(key, value);
 	}
 	
-	public List<String> sortedKeys() { //Returns a List of ints, sorted based on their corresponding values. Uses insertion sort.
-		List<String> keysList = getKeys();
-		int index;
-		int v;
-		String s;
-		for(int i = 0; i < keysList.size(); i++) {
-			index = i;
-			s = keysList.remove(i);
-			v = get(s);
-			for(int j = 0; j < i; j++) {
-				if(v < get(keysList.get(j))) {
-					index = j;
-					break;
-				}
-			}
-			keysList.add(index, s);
+	public List<String> sortedKeys() { //Returns a List of Strings, sorted based on their corresponding values.
+		List<String> keysList = new ArrayList<String>();
+		Iterator<IntKeyValuePair> i = getKVPs().iterator();
+		while(i.hasNext()) {
+			keysList.add(i.next().getKey());
 		}
 		return keysList;
 	}
 	
-	public List<String> reverseSortedKeys() { //Returns a List of type String, sorted based on their corresponding values. Uses insertion sort.
-		List<String> keysList = getKeys();
-		int index;
-		int v;
-		String s;
-		for(int i = 0; i < keysList.size(); i++) {
-			index = i;
-			s = keysList.remove(i);
-			v = getInt(s);
-			for(int j = 0; j < i; j++) {
-				if(v > getInt(keysList.get(j))) {
-					index = j;
-					break;
-				}
-			}
-			keysList.add(index, s);
+	public List<String> reverseSortedKeys() { //Returns a List of Strings, sorted based on their corresponding values.
+		List<String> keysList = new ArrayList<String>();
+		Iterator<IntKeyValuePair> i = getKVPs().iterator();
+		while(i.hasNext()) {
+			keysList.add(0, i.next().getKey());
 		}
 		return keysList;
 	}
 	
-	private int getInt(String s) {
-		return get(s);
+	private List<IntKeyValuePair> getKVPs() {
+		List<IntKeyValuePair> kvpArray = new ArrayList<IntKeyValuePair>();
+		for(int i = 0; i < size; i++) {
+			kvpArray.addAll(map[i].getKeyValuePairs());
+		}
+		Collections.sort(kvpArray);
+		return kvpArray;
 	}
 	
 	public String toString() {

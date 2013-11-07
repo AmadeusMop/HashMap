@@ -1,6 +1,6 @@
 package hashMap;
 
-public class IntKeyValuePair {
+public class IntKeyValuePair implements Comparable<IntKeyValuePair> {
 	private String key;
 	private int value;
 	
@@ -23,5 +23,9 @@ public class IntKeyValuePair {
 	
 	public String toString() {
 		return key + ", " + Integer.toString(value);
+	}
+	
+	public int compareTo(IntKeyValuePair other) {
+		return value - other.getValue();
 	}
 }
